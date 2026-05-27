@@ -92,6 +92,8 @@ export interface Hospital {
 export const hospitalApi = {
   getMe: () => api.get<Hospital>("/hospitals/me"),
   updateMe: (data: Partial<Hospital>) => api.put<Hospital>("/hospitals/me", data),
+  lookupCustomer: (customId: string) =>
+    api.get<CustomerLookupResult>(`/hospital/lookup/customer/${encodeURIComponent(customId)}`),
 };
 
 // ── Policies ──────────────────────────────────────────────────────────────────
@@ -139,10 +141,6 @@ export const policyApi = {
     api.get<Policy>(`/policies/lookup?policy_number=${encodeURIComponent(policy_number)}`),
 };
 
-export const hospitalApi = {
-  lookupCustomer: (customId: string) =>
-    api.get<CustomerLookupResult>(`/hospital/lookup/customer/${encodeURIComponent(customId)}`),
-};
 
 // ── Claims ────────────────────────────────────────────────────────────────────
 export interface ClaimListItem {

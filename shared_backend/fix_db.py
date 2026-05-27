@@ -26,6 +26,12 @@ add_column_if_not_exists("agents", "agent_id_8", "TEXT")
 add_column_if_not_exists("hospitals", "hospital_id_8", "TEXT")
 add_column_if_not_exists("hospital_profiles", "hospital_id_8", "TEXT")
 
+# Add missing claim verification/settlement columns
+add_column_if_not_exists("customer_claims", "is_verified", "BOOLEAN DEFAULT 0")
+add_column_if_not_exists("customer_claims", "settled_amount", "REAL")
+add_column_if_not_exists("support_claims", "is_verified", "BOOLEAN DEFAULT 0")
+add_column_if_not_exists("support_claims", "settled_amount", "REAL")
+
 conn.commit()
 conn.close()
 print("Database fix completed.")
